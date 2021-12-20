@@ -1,19 +1,16 @@
-/* .quad-win__item {
-    width: 200px;
-    height: 200px;
-    background-color: aquamarine;
-    border: black solid 2px;
-    align-items: center;
-    text-align: center;
-    line-height: 200px;
-
+html,
+body {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
 }
 
-.quad-win {
-    margin: 0 auto;
-    max-width: 450px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+#container1 {
+    height: 200px;
+    background-color: blue;
+}
 
-} */
+#container2 {
+    height: 400px;
+    background-color: blueviolet;
+}

@@ -11,22 +11,34 @@ export default class QuadWin {
     }
 
     appendTo(parentEl) {
-        parentEl.innerHTML = this.html
-        const style = document.createElement('style')
-        style.innerHTML = css
-        document.head.append(style)
+        this.parentEl = parentEl
+        if (this.el) {
+            parentEl.append(this.el)
+        } else {
+            parentEl.innerHTML = this.html
+            this.el = this.parentEl.querySelector('.quad-win')
+            const style = document.createElement('style')
+            style.innerHTML = css
+            document.head.append(style)
+            window.addEventListener('resize', this.updateStyles.bind(this))
+        }
+        this.updateStyles()
+
     }
 
-    calcStyles() {
-
+    updateStyles() {
+        const { width, height } = this.parentEl.getBoundingClientRect()
+        const smallerSide = width < height ? width : height
+        this.el.style = `width: ${smallerSide}px; height: ${smallerSide}px`
     }
 }
 
 
 const css = /* css */`
 .quad-win__item {
-    width: 200px;
-    height: 200px;
+    box-sizing: border-box;
+    width: 45%;
+    height: 45%;
     background-color: aquamarine;
     border: black solid 2px;
     align-items: center;
@@ -37,10 +49,9 @@ const css = /* css */`
 
 .quad-win {
     margin: 0 auto;
-    max-width: 450px;
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 10%;
 
 }
 `
